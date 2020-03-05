@@ -1,0 +1,45 @@
+<div class="alert alert-danger col-md-5 mt-3" *ngIf="!contact">
+    <i>The contact was not found.</i>
+</div>
+
+<div class="col-lg-12 mt-3" *ngIf="contact">
+    <h1>{{page_title}}</h1>
+    <hr>
+
+    <div class="alert alert-success col-md-6 mt-3" *ngIf="status == 'success'">
+        <i>Los datos se han actualizado correctamente</i>
+    </div>
+
+    <div class="alert alert-danger col-md-6 mt-3" *ngIf="status == 'error'">
+        <i>Los datos no se han podido actualizar</i>
+    </div>
+
+    <form class="col-md-5 ml-0 pl-0" #userEditForm="ngForm" (ngSubmit)="onSubmit(userEditForm)">
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="contact.name" required pattern="[a-zA-Z À-ÿ]+"
+                class="form-control">
+            <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block"><i>The phone is not
+                    valid</i></small>
+        </div>
+
+        <div class="form-group">
+            <label for="surname"><i>Surnames</i></label>
+            <input type="text" name="surname" #surname="ngModel" [(ngModel)]="contact.surname" required
+                pattern="[a-zA-Z À-ÿ]+" class="form-control">
+            <small *ngIf="!surname.valid && surname.touched" class="invalid-feedback d-block"><i>The surnames are not
+                    valid</i></small>
+        </div>
+
+
+        <div class="form-group">
+            <label for="phone"><i>Phone Number</i></label>
+            <input type="text" name="phone" #phone="ngModel" [(ngModel)]="contact.phone" required class="form-control">
+            <small *ngIf="!phone.valid && phone.touched" class="invalid-feedback d-block"><i>The phone number is not
+                    valid</i></small>
+        </div>
+
+        <input type="submit" value="Guardar" class="btn btn-success" [disabled]="userEditForm.invalid">
+    </form>
+</div>

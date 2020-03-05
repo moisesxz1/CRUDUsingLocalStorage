@@ -1,0 +1,28 @@
+
+<div class="alert alert-danger col-md-5 mt-3" *ngIf="!contacts || contacts.length === 0">
+    <i>No contacts to fetch yet.</i>
+</div>
+
+
+
+<div class="container">
+    <h2>Contacts</h2>
+
+    <p *ngIf="!contacts || contacts.length === 0">
+        <a  [routerLink]="['/signup']" class="delete-button button-create">Create contact</a>
+    </p>
+
+    <ul>
+        <li *ngFor="let contact of contacts" class="project">
+            <a [routerLink]="['/contact', contact.id]"> <!--PM: rutaURL, SP: idProyectoAcual-->
+
+                <div class="image"> <!--mascara-->
+                    <img src="https://image.shutterstock.com/image-illustration/photo-silhouette-male-profile-white-260nw-1018631086.jpg"  /> 
+
+                </div>
+                <h3>Name: {{contact.name}}</h3>
+                <p>Phone: {{contact.phone}}</p>
+            </a>
+        </li>
+    </ul>
+</div>

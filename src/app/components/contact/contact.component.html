@@ -1,0 +1,33 @@
+<div class="alert alert-danger col-md-5 mt-3" *ngIf="!contact">
+    <i>The contact was not found.</i>
+</div>
+
+
+<div class="container" *ngIf="contact">
+
+    <div class="image">
+        <img
+            src="https://image.shutterstock.com/image-illustration/photo-silhouette-male-profile-white-260nw-1018631086.jpg">
+    </div>
+
+    <div class="card">
+        <div class="data">
+            <h1>Name: <i>{{contact.name}}</i></h1>
+            <h3>Surname: <i>{{contact.surname}}</i></h3>
+            <h3>Phone Number: <i>{{contact.phone}}</i></h3>
+            <h3>Email: <i>{{contact.email}}</i></h3>
+
+            <p *ngIf="confirm == false">
+                <a [routerLink]="['/edit-contact', contact.id]" class="edit-button">Edit</a>
+                <a (click)="setConfirm(true)" class="delete-button">Delete</a>
+            </p>
+
+            <p *ngIf="confirm == true">
+                <span class="confirm"> <i>Are you sure you want to delete this contact?</i> </span>
+                <a (click)="setConfirm(false)" class="edit-button">Cancel</a>
+                <a (click)="deleteContact(contact.id)" class="delete-button">Confirm delete</a>
+            </p>
+        </div>
+    </div>
+
+</div>
